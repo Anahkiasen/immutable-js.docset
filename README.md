@@ -4,7 +4,13 @@ Docset for Dash.
 ## Generating the documentation
 
 ```bash
+$ bundle install
 $ make
+```
+
+Or to rebuild it from scratch
+
+```
 $ make rebuild
 ```
 
