@@ -27,5 +27,5 @@ clean:
 rebuild: clean all
 
 EXCLUDES = .* *.rb *.json *.ts *.tgz $(DOCUMENTATION) node_modules
-dist: rebuild
+dist:
 	tar $(addprefix --exclude=,$(EXCLUDES)) -C .. -cvzf $(NAME).tgz $(NAME).docset
