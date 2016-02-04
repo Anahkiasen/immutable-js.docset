@@ -4,7 +4,7 @@ DEFINITIONS = immutable.d.ts
 DOCUMENTATION = doc
 RESOURCES = Contents/Resources
 
-all: Contents/Resources
+all: $(RESOURCES)
 
 $(TYPEDOC):
 	npm install
