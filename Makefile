@@ -13,7 +13,7 @@ $(DEFINITIONS):
 	wget https://raw.githubusercontent.com/facebook/immutable-js/master/dist/$(DEFINITIONS)
 
 $(DOCUMENTATION)/index.html: $(TYPEDOC) $(DEFINITIONS)
-	$(TYPEDOC) --name Immutable.js --out $(DOCUMENTATION) --includeDeclarations --entryPoint 'Immutable' --target ES6 --hideGenerator --verbose --mode file --theme minimal $(DEFINITIONS)
+	$(TYPEDOC) --out $(DOCUMENTATION) --includeDeclarations --entryPoint 'Immutable' --target ES6 --hideGenerator --verbose --mode file --theme minimal $(DEFINITIONS)
 
 $(RESOURCES): $(DOCUMENTATION)/index.html
 	ruby generate.rb $(DOCUMENTATION)/index.html

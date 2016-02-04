@@ -10,5 +10,7 @@
 	<string>immutable</string>
 	<key>isDashDocset</key>
 	<true/>
+	<key>DashDocSetFallbackURL</key>
+	<string>http://facebook.github.io/immutable-js/docs/</string>
 </dict>
 </plist>
