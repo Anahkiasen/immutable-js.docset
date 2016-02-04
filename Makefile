@@ -2,6 +2,7 @@ NAME = immutable-js
 TYPEDOC = node_modules/.bin/typedoc
 DEFINITIONS = immutable.d.ts
 DOCUMENTATION = doc
+RESOURCES = Contents/Resources
 
 all: Contents/Resources
 
@@ -12,19 +13,19 @@ $(DEFINITIONS):
 	wget https://raw.githubusercontent.com/facebook/immutable-js/master/dist/$(DEFINITIONS)
 
 $(DOCUMENTATION)/index.html: $(TYPEDOC) $(DEFINITIONS)
-	$(TYPEDOC) --out $(DOCUMENTATION) --includeDeclarations --entryPoint 'Immutable' --target ES6 --hideGenerator --verbose --mode file --theme minimal $(DEFINITIONS)
+	$(TYPEDOC) --name Immutable.js --out $(DOCUMENTATION) --includeDeclarations --entryPoint 'Immutable' --target ES6 --hideGenerator --verbose --mode file --theme minimal $(DEFINITIONS)
 
-clean:
-	- rm -r $(DOCUMENTATION)
-	- rm $(NAME).tgz
-
-Contents/Resources: $(DOCUMENTATION)/index.html
+$(RESOURCES): $(DOCUMENTATION)/index.html
 	ruby generate.rb $(DOCUMENTATION)/index.html
 
-EXCLUDES = .* *.rb *.json *.ts *.tgz $(DOCUMENTATION) node_modules
-dist:
-	tar $(addprefix --exclude=,$(EXCLUDES)) -C .. -cvzf $(NAME).tgz $(NAME).docset
+clean:
+	- rm -rf $(RESOURCES)
+	- rm -rf $(DOCUMENTATION)
+	- rm $(DEFINITIONS)
+	- rm $(NAME).tgz
 
-rebuild:
-	- rm -rf Contents/Resources $(DOCUMENTATION) $(DEFINITIONS) $(NAME).tgz
-	- make
+rebuild: clean all
+
+EXCLUDES = .* *.rb *.json *.ts *.tgz $(DOCUMENTATION) node_modules
+dist: rebuild
+	tar $(addprefix --exclude=,$(EXCLUDES)) -C .. -cvzf $(NAME).tgz $(NAME).docset
