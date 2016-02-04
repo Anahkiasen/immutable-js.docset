@@ -1,5 +1,3 @@
-
-
 NAME = immutable-js
 
 all: Contents/Resources

@@ -1,2 +1,9 @@
+# Dependencies
 node_modules
 Gemfile.lock
+
+# Generated
+Contents/Resources
+doc
+immutable.d.ts
+immutable-js.tgz
