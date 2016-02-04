@@ -3,11 +3,11 @@
 <plist version="1.0">
 <dict>
 	<key>CFBundleIdentifier</key>
-	<string>Immutable.js</string>
+	<string>immutable-js</string>
 	<key>CFBundleName</key>
 	<string>Immutable.js</string>
 	<key>DocSetPlatformFamily</key>
-	<string>Immutable.js</string>
+	<string>immutable</string>
 	<key>isDashDocset</key>
 	<true/>
 </dict>
