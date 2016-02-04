@@ -5,7 +5,7 @@ require 'pathname'
 
 doc = ARGF.read
 html = Nokogiri::HTML(doc)
-file = 'immutable-js.html'
+file = 'index.html'
 sql = []
 
 modules = html.css(".tsd-kind-module:has(a[name=immutable]) > .tsd-parent-kind-module")
@@ -20,7 +20,7 @@ modules.each do |mod|
     a, h3 = property.children.filter('a, h3')
     sql << "INSERT OR IGNORE INTO searchIndex(name, type, path) VALUES ('#{h3.text}', 'Property', '#{file}##{a['name']}');"
   end
-  
+
   children.css('.tsd-panel.tsd-kind-method').each do |method|
     a, h3 = method.children.filter('a, h3')
     sql << "INSERT OR IGNORE INTO searchIndex(name, type, path) VALUES ('#{h3.text}', 'Method', '#{file}##{a['name']}');"
@@ -46,4 +46,3 @@ documents.mkpath
 documents.join(file).open('w') do |f|
   f.puts(doc)
 end
-
