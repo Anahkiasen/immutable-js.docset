@@ -1,10 +1,11 @@
 # Immutable.js Docset
 Docset for Dash.
 
-## Generating the documenation
+## Generating the documentation
 
 ```bash
 $ make
+$ make rebuild
 ```
 
 ## Generating the archive

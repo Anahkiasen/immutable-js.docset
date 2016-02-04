@@ -23,3 +23,6 @@ EXCLUDES = .* *.rb *.json *.ts *.tgz doc node_modules
 dist:
 	tar $(addprefix --exclude=,$(EXCLUDES)) -C .. -cvzf $(NAME).tgz $(NAME).docset
 
+rebuild:
+	- rm -rf Contents/Resources doc immutable.d.ts $(NAME).tgz
+	- make
