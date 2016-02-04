@@ -1,16 +1,17 @@
 NAME = immutable-js
+TYPEDOC = node_modules/.bin/typedoc
+DEFINITIONS = immutable.d.ts
 
 all: Contents/Resources
 
-TYPEDOC = node_modules/.bin/typedoc
 $(TYPEDOC):
 	npm install
 
-immutable.d.ts:
-	wget https://raw.githubusercontent.com/facebook/immutable-js/master/dist/$@
+$(DEFINITIONS):
+	wget https://raw.githubusercontent.com/facebook/immutable-js/master/dist/$(DEFINITIONS)
 
-doc/index.html: $(TYPEDOC) immutable.d.ts
-	$(TYPEDOC) --out doc --includeDeclarations --entryPoint 'Immutable' --target ES6 --hideGenerator --verbose --mode file --theme minimal immutable.d.ts
+doc/index.html: $(TYPEDOC) $(DEFINITIONS)
+	$(TYPEDOC) --out doc --includeDeclarations --entryPoint 'Immutable' --target ES6 --hideGenerator --verbose --mode file --theme minimal $(DEFINITIONS)
 
 clean:
 	- rm -r doc
@@ -24,5 +25,5 @@ dist:
 	tar $(addprefix --exclude=,$(EXCLUDES)) -C .. -cvzf $(NAME).tgz $(NAME).docset
 
 rebuild:
-	- rm -rf Contents/Resources doc immutable.d.ts $(NAME).tgz
+	- rm -rf Contents/Resources doc $(DEFINITIONS) $(NAME).tgz
 	- make
